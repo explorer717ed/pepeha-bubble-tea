@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/x-icon" href="/assets/img/favicon2.ico">
+  <title>Pepeha - Bubble Tea - Chyi, Yi-Chin</title>
+  <style>
+    body{
+      background-color: #FFF7ED;
+      margin: 0;
+    }
+
+    .container-grid{
+      max-width: 1200px;
+      margin: 25px auto;
+      display: grid;
+      grid-template-areas: 'block1' 'block2' 'block3';
+    }
+
+    .block {
+      margin: 25px;
+    }
+
+    .block1{
+      grid-area: block1;
+      display: flex;
+      align-items: end;
+    }
+    .block2{
+      grid-area: block2;
+    }
+    .block3 {
+      grid-area: block3;
+      height: 80vh;
+    }
+
+    .wrap-square{
+      padding: 50%;
+      overflow: hidden;
+      position: relative;
+      -webkit-touch-callout: none; /* Safari */
+        -webkit-user-select: none; /* Chrome */     
+           -moz-user-select: none; /* Firefox */
+            -ms-user-select: none; /* Internet Explorer/Edge */
+                user-select: none; 
+    }
+
+    .wrap-square video, .wrap-rect video{
+      position: absolute;
+      top: 0;
+      left: 45%;
+      right: 0;
+      bottom: 0;
+      margin: auto;
+      height: 100%;
+      transform: translateX(-50%);
+      filter:brightness(125%);
+    }
+
+    #vid3{
+      left: 41%;
+      
+    }
+
+    .wrap-rect{
+      height: 100%;
+      overflow: hidden;
+      -webkit-touch-callout: none; /* Safari */
+        -webkit-user-select: none; /* Chrome */     
+           -moz-user-select: none; /* Firefox */
+            -ms-user-select: none; /* Internet Explorer/Edge */
+                user-select: none; 
+    }
+    .block3 .wrap-rect{
+      position: relative;
+
+    }
+    .img{
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-size: cover;
+      background-position: center center;
+      opacity: 1;
+      transition-duration: 0.5s;
+    }
+    .fade {
+      opacity: 0;
+    }
+    #img1{
+      background-image: url(/assets/img/img1.png);
+    }
+    #img2{
+      background-image: url(/assets/img/img2.png);
+    }
+    #img3{
+      background-image: url(/assets/img/img3w.png);
+    }
+    
+    @media only screen and (min-width: 540px){
+      .container-grid{
+        grid-template-areas: 'block1 block2'
+        'block3 block3';
+      }
+      
+    }
+    @media only screen and (min-width: 960px){
+
+      .container-grid{
+        max-width: 1200px;
+        grid-template-areas: 'block1 block2 block3';
+        grid-template-columns: 30% 30% 40%;
+      }
+    }
+  </style>
+</head>
+<body>
+    <div class="container-grid">
+      <div class="block block1">
+        <div id="wrap-vid1" class="wrap-square">
+          <video id="vid1" muted playsinline>
+            <source src="/assets/vid/video1.mp4" type="video/mp4">
+          </video>
+          <div class="img" id="img1"></div>
+        </div>
+      </div>
+      <div class="block block2">
+        <div id="wrap-vid2" class="wrap-square">
+          <video id="vid2" muted playsinline>
+            <source src="/assets/vid/video2.mp4" type="video/mp4">
+          </video>
+          <div class="img" id="img2"></div>
+        </div>
+      </div>
+      <div class="block block3">
+        <div id="wrap-vid3" class="wrap-rect">
+          <video id="vid3" muted playsinline>
+            <source src="/assets/vid/video3.mp4" type="video/mp4">
+          </video>
+          <div class="img" id="img3"></div>
+        </div>
+      </div>
+
+    </div>
+  
+  
+  <script>
+    const $ = (id) => document.getElementById(id)
+
+    window.onload = () => {
+      const wrapVid1 = $('wrap-vid1')
+      const vid1 = $('vid1')
+      const img1 = $('img1')
+
+      const playVid1 = () => {
+        vid1.play()
+        img1.classList.add('fade')
+      }
+      const stopVid1 = () => {
+        vid1.pause()
+        vid1.currentTime = 0
+        img1.classList.remove('fade')
+      }
+      wrapVid1.addEventListener('mouseenter', playVid1)
+      wrapVid1.addEventListener('touchstart', playVid1)
+      wrapVid1.addEventListener('mouseout', stopVid1)
+      wrapVid1.addEventListener('touchend', stopVid1)
+
+      vid1.addEventListener('ended',()=>{
+        img1.classList.remove('fade')
+      })
+
+      const wrapVid2 = $('wrap-vid2')
+      const vid2 = $('vid2')
+      const img2 = $('img2')
+
+      const playVid2 = ()=>{
+        vid2.play()
+        img2.classList.add('fade')
+      }
+      const stopVid2 = ()=>{
+        vid2.pause()
+        vid2.currentTime = 0
+        img2.classList.remove('fade')
+      }
+      wrapVid2.addEventListener('mouseenter', playVid2)
+      wrapVid2.addEventListener('touchstart', playVid2)
+      wrapVid2.addEventListener('mouseout', stopVid2)
+      wrapVid2.addEventListener('touchend', stopVid2)
+
+      vid2.addEventListener('ended',()=>{
+        img2.classList.remove('fade')
+      })
+
+      const wrapVid3 = $('wrap-vid3')
+      const vid3 = $('vid3')
+      const img3 = $('img3')
+
+      const playVid3 = ()=>{
+        vid3.play()
+        img3.classList.add('fade')
+      }
+      const stopVid3 = ()=>{
+        vid3.pause()
+        vid3.currentTime = 0
+        img3.classList.remove('fade')
+      }
+      wrapVid3.addEventListener('mouseenter', playVid3)
+      wrapVid3.addEventListener('touchstart', playVid3)
+      wrapVid3.addEventListener('mouseout', stopVid3)
+      wrapVid3.addEventListener('touchend', stopVid3)
+
+      vid3.addEventListener('ended',()=>{
+        img3.classList.remove('fade')
+      })
+
+    }
+
+  </script>
+</body>
+</html>
